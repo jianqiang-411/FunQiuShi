@@ -12,4 +12,6 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property (assign, nonatomic) QiuShiType qsType;
+
 @end

@@ -7,6 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "MenuVC.h"
+#import "ContentVC.h"
+#import "PPRevealSideViewController.h"
+#import "NavVC.h"
+
 
 @implementation AppDelegate
 
@@ -18,9 +23,27 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.qsType = QiuShiTypeNew;
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    // 初始化视图控制器
+    MenuVC* menuVC = [[[MenuVC alloc] initWithNibName:nil bundle:nil] autorelease];
+    ContentVC* contentVC = [[[ContentVC alloc] initWithNibName:nil bundle:nil] autorelease];
+    contentVC.view.backgroundColor = [UIColor whiteColor];
+//    UINavigationController* nc = [[[UINavigationController alloc] initWithRootViewController:contentVC] autorelease];
+    NavVC* nc = [[[NavVC alloc] initWithRootViewController:contentVC] autorelease];
+    
+    // 初始化PPRevealSideVC
+    PPRevealSideViewController* rsVC = [[[PPRevealSideViewController alloc] initWithRootViewController:nc] autorelease];
+    // 预记载侧滑视图控制器的左侧视图控制器
+    [rsVC preloadViewController:menuVC forSide:PPRevealSideDirectionLeft];
+    // 设置当视图关闭状态时支持的滑动手势方式
+    [rsVC setPanInteractionsWhenClosed:PPRevealSideInteractionContentView | PPRevealSideInteractionNavigationBar];
+    
+    [self.window setRootViewController:rsVC];
     [self.window makeKeyAndVisible];
     return YES;
 }
