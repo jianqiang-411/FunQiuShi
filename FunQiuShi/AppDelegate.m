@@ -35,13 +35,17 @@
     contentVC.view.backgroundColor = [UIColor whiteColor];
 //    UINavigationController* nc = [[[UINavigationController alloc] initWithRootViewController:contentVC] autorelease];
     NavVC* nc = [[[NavVC alloc] initWithRootViewController:contentVC] autorelease];
+    UIImage* img = [UIImage imageNamed:@"head_background.png"];
+    [nc.navigationBar setTintColor:[UIColor colorWithPatternImage:img]];
     
     // 初始化PPRevealSideVC
     PPRevealSideViewController* rsVC = [[[PPRevealSideViewController alloc] initWithRootViewController:nc] autorelease];
     // 预记载侧滑视图控制器的左侧视图控制器
     [rsVC preloadViewController:menuVC forSide:PPRevealSideDirectionLeft];
     // 设置当视图关闭状态时支持的滑动手势方式
-    [rsVC setPanInteractionsWhenClosed:PPRevealSideInteractionContentView | PPRevealSideInteractionNavigationBar];
+    [rsVC setPanInteractionsWhenClosed:PPRevealSideInteractionContentView];
+    //重新设置打开状态的距离
+    [rsVC changeOffset:50 forDirection:PPRevealSideDirectionLeft];
     
     [self.window setRootViewController:rsVC];
     [self.window makeKeyAndVisible];

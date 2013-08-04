@@ -14,6 +14,9 @@
     #import "PullingRefreshTableView.h"
     #import "Reachability.h"
     #import "ASIHTTPRequest.h"
+    #import"PPRevealSideViewController.h"
+    #import "AppUltility.h"
+    #import "SliderSwitch.h"
 #endif
 
 
@@ -27,6 +30,10 @@ typedef enum
     QiuShiTimeMonth,    // 精华－每月
     QiuShiTimeRandom,   // 穿越
 } QiuShiType;
+
+
+#define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
+#define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
 
 
 // 嫩草

@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class QiuShi;
+
 @interface ContentCell : UITableViewCell
 
+- (void)configContentCellWithQiuShi:(QiuShi* )qs;
+
+- (void)resizeContentCellHeight;
+
+
 @end
+
+
+
+
+
